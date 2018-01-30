@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration>
+<property>
+<name>hbase.rootdir</name>
+<value>hdfs://namenode1:9000/hbase</value>
+<description>The directory shared by RegionServers.
+</description>
+</property>
+<!--
+     <property>
+<name>hbase.master</name>
+<value>hdfs://namenode1:60000</value>
+</property>
+-->
+<property>
+<name>hbase.cluster.distributed</name>
+<value>true</value>
+<description>The mode the cluster will be in. Possible values are
+      false: standalone and pseudo-distributed setups with managed Zookeeper
+      true: fully-distributed with unmanaged Zookeeper Quorum (see hbase-env.sh)
+</description>
+</property>
+<property>
+<name>hbase.regionserver.lease.period</name>
+<value>900000</value>
+</property>
+<property>
+<name>hbase.tmp.dir</name>
+<value>/hadoop2/hbase-${user.name}</value>
+<description>Temporary directory on the local filesystem.
+Change this setting to point to a location more permanent
+than '/tmp' (The '/tmp' directory is often cleared on
+machine restart).
+</description>
+</property>
+<property>
+<name>hbase.client.write.buffer</name>
+<value>4194304</value>
+<description>Default size of the HTable clien write buffer in bytes.
+    A bigger buffer takes more memory -- on both the client and server
+    side since server instantiates the passed write buffer to process
+    it -- but a larger buffer size reduces the number of RPCs made.
+    For an estimate of server-side memory-used, evaluate
+    hbase.client.write.buffer * hbase.regionserver.handler.count
+</description>
+</property>
+<property>
+<name>hbase.client.retries.number</name>
+<value>10</value>
+<description>Maximum retries.  Used as maximum for all retryable
+    operations such as fetching of the root region from root region
+    server, getting a cell's value, starting a row update, etc.
+    Default: 10.
+</description>
+</property>
+<property>
+<name>hbase.rest.port</name>
+<value>60050</value>
+</property>
+<property>
+<name>hbase.zookeeper.quorum</name>
+<value>namenode1,datanode1,datanode2</value>
+</property>
+<property>
+<name>hbase.zookeeper.property.clientPort</name>
+<value>2181</value>
+</property>
+<property>  
+        <name>hbase.master.info.port</name>  
+        <value>60010</value>  
+ </property> 
+</configuration>
